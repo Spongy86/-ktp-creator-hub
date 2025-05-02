@@ -1,0 +1,1 @@
+// Simulierter Service Worker
