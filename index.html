@@ -3,10 +3,10 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>KTP Creator Hub</title>
+    <title>KTP Creator Hub – Bewertung</title>
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-      import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+      import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyDk2xg99xrf8Lokjn2iX2A6cX2TsU3PYOA",
@@ -19,27 +19,65 @@
       };
 
       const app = initializeApp(firebaseConfig);
-      const auth = getAuth();
+      const db = getFirestore(app);
 
-      window.login = function login() {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        signInWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            const user = userCredential.user;
-            alert("Eingeloggt als: " + user.email);
-          })
-          .catch((error) => {
-            alert("Fehler: " + error.message);
-          });
-      };
+      async function submitReview() {
+        const stars = document.getElementById("stars").value;
+        const comment = document.getElementById("comment").value;
+
+        if (!stars || !comment) {
+          alert("Bitte Bewertung und Kommentar ausfüllen.");
+          return;
+        }
+
+        await addDoc(collection(db, "reviews"), {
+          stars: Number(stars),
+          comment,
+          created: serverTimestamp()
+        });
+
+        alert("Bewertung gespeichert!");
+        loadReviews();
+        document.getElementById("review-form").reset();
+      }
+
+      async function loadReviews() {
+        const snap = await getDocs(collection(db, "reviews"));
+        const out = document.getElementById("reviews");
+        out.innerHTML = "";
+        let sum = 0;
+        let count = 0;
+
+        snap.forEach(doc => {
+          const data = doc.data();
+          sum += data.stars;
+          count++;
+          out.innerHTML += `<p><strong>${data.stars} Sterne</strong> – ${data.comment}</p>`;
+        });
+
+        if (count > 0) {
+          const avg = (sum / count).toFixed(1);
+          document.getElementById("avg").innerText = "Durchschnitt: " + avg + " Sterne";
+        }
+      }
+
+      window.submitReview = submitReview;
+      window.onload = loadReviews;
     </script>
   </head>
   <body>
-    <h1>KTP Creator Hub – Login</h1>
-    <input type="email" id="email" placeholder="E-Mail"><br />
-    <input type="password" id="password" placeholder="Passwort"><br />
-    <button onclick="login()">Login</button>
+    <h1>Buch bewerten</h1>
+    <div id="avg">Durchschnitt: </div>
+    <form id="review-form">
+      <label>Sterne (1–5):</label><br />
+      <input type="number" id="stars" min="1" max="5"><br />
+      <label>Kommentar:</label><br />
+      <textarea id="comment"></textarea><br />
+      <button type="button" onclick="submitReview()">Bewerten</button>
+    </form>
+
+    <h2>Alle Bewertungen</h2>
+    <div id="reviews"></div>
   </body>
 </html>
     
