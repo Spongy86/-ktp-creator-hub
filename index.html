@@ -3,147 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buch bewerten</title>
+  <title>Art of Intelligenz</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f8f9fa;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+      background-color: #e6f0fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     h1 {
-      font-size: 1.8em;
-      margin-bottom: 10px;
+      text-align: center;
+      color: #333;
     }
 
-    .rating-box {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      width: 100%;
-      max-width: 400px;
+    p {
+      color: #555;
+      line-height: 1.6;
+      text-align: center;
     }
 
-    .stars {
+    .button-container {
       display: flex;
-      gap: 10px;
-      margin: 10px 0;
+      justify-content: center;
+      margin-top: 30px;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
-    .star {
-      font-size: 28px;
-      cursor: pointer;
-      color: #ddd;
-      transition: color 0.2s ease;
-    }
-
-    .star.selected,
-    .star:hover,
-    .star:hover ~ .star {
-      color: #ffc107;
-    }
-
-    textarea {
-      width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 10px;
-      resize: none;
-      font-size: 14px;
-      margin-top: 10px;
-      min-height: 80px;
-    }
-
-    button {
-      background-color: #6c63ff;
+    .button {
+      padding: 12px 24px;
+      background-color: #4a90e2;
       color: white;
       border: none;
       border-radius: 8px;
-      padding: 10px 18px;
-      font-size: 14px;
-      margin-top: 12px;
       cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
     }
 
-    .reviews {
-      margin-top: 40px;
-      max-width: 400px;
-      width: 100%;
-    }
-
-    .review {
-      background: #fff;
-      border-left: 5px solid #6c63ff;
-      margin-bottom: 15px;
-      padding: 12px;
-      border-radius: 8px;
-    }
-
-    .review strong {
-      color: #333;
+    .button:hover {
+      background-color: #357abd;
     }
   </style>
 </head>
 <body>
-  <h1>Buch bewerten</h1>
-  <div class="rating-box">
-    <div id="stars" class="stars">
-      <span class="star" data-value="1">&#9733;</span>
-      <span class="star" data-value="2">&#9733;</span>
-      <span class="star" data-value="3">&#9733;</span>
-      <span class="star" data-value="4">&#9733;</span>
-      <span class="star" data-value="5">&#9733;</span>
+  <div class="container">
+    <h1>Willkommen bei Art of Intelligenz</h1>
+    <p>Dein persönlicher Hub für Buchprojekte, kreative KI-Ideen und smarte Tools.<br>Bereit, etwas Großes zu starten?</p>
+
+    <div class="button-container">
+      <button class="button" onclick="alert('Bald verfügbar: Übersetzer!')">Übersetzungs-Tool</button>
+      <button class="button" onclick="alert('Bald verfügbar: Buchstatistiken!')">KDP-Statistiken</button>
+      <button class="button" onclick="alert('Mehr kommt bald...')">Mehr entdecken</button>
     </div>
-    <textarea id="comment" placeholder="Schreibe einen Kommentar..."></textarea>
-    <button onclick="submitRating()">Bewerten</button>
   </div>
-
-  <div class="reviews" id="reviewList">
-    <!-- Bewertungen kommen hierhin -->
-  </div>
-
-  <script>
-    const stars = document.querySelectorAll('.star');
-    let selectedRating = 0;
-
-    stars.forEach(star => {
-      star.addEventListener('click', () => {
-        selectedRating = parseInt(star.getAttribute('data-value'));
-        updateStars(selectedRating);
-      });
-    });
-
-    function updateStars(rating) {
-      stars.forEach(star => {
-        star.classList.remove('selected');
-        if (parseInt(star.getAttribute('data-value')) <= rating) {
-          star.classList.add('selected');
-        }
-      });
-    }
-
-    function submitRating() {
-      const comment = document.getElementById('comment').value.trim();
-      if (selectedRating === 0 || comment === '') {
-        alert("Bitte eine Bewertung und einen Kommentar eingeben.");
-        return;
-      }
-
-      const reviewList = document.getElementById('reviewList');
-      const newReview = document.createElement('div');
-      newReview.className = 'review';
-      newReview.innerHTML = `<strong>${selectedRating} Sterne</strong> – ${comment}`;
-      reviewList.prepend(newReview);
-
-      document.getElementById('comment').value = '';
-      selectedRating = 0;
-      updateStars(0);
-    }
-  </script>
 </body>
 </html>
