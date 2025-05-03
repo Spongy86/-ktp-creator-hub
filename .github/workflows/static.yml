@@ -3,6 +3,7 @@ name: Deploy static content to GitHub Pages
 on:
   push:
     branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -24,12 +25,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v3
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: .  # <- Root-Verzeichnis mit index.html
+          path: . # <- Punkt heißt: Root-Verzeichnis (wo index.html liegt)
 
       - name: Deploy to GitHub Pages
         id: deployment
