@@ -2,70 +2,50 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Art of Intelligenz</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #e6f0fa;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    h1 {
-      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
       color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
     }
-
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #e0f7fa;
+      padding: 10px;
+      border-radius: 8px;
+    }
     p {
-      color: #555;
-      line-height: 1.6;
+      font-size: 1.2rem;
+      color: #666;
+      max-width: 600px;
       text-align: center;
     }
-
-    .button-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 30px;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      padding: 12px 24px;
-      background-color: #4a90e2;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-    }
-
-    .button:hover {
-      background-color: #357abd;
+    .google-box {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Willkommen bei Art of Intelligenz</h1>
-    <p>Dein persönlicher Hub für Buchprojekte, kreative KI-Ideen und smarte Tools.<br>Bereit, etwas Großes zu starten?</p>
+  <div id="google_translate_element" class="google-box"></div>
 
-    <div class="button-container">
-      <button class="button" onclick="alert('Bald verfügbar: Übersetzer!')">Übersetzungs-Tool</button>
-      <button class="button" onclick="alert('Bald verfügbar: Buchstatistiken!')">KDP-Statistiken</button>
-      <button class="button" onclick="alert('Mehr kommt bald...')">Mehr entdecken</button>
-    </div>
-  </div>
+  <h1>Willkommen bei Art of Intelligenz!</h1>
+  <p>Die Plattform für kreative Bücher, smarte Tools und KI-Unterstützung.</p>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'de'
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
