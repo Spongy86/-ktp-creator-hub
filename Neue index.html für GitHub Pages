@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Art of Intelligenz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #e0f7fa;
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #666;
+      max-width: 680px;
+      text-align: center;
+    }
+
+    .google-translate-box {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="google-translate-box" id="google_translate_element"></div>
+
+  <h1>Willkommen bei Art of Intelligenz!</h1>
+  <p>Die Plattform für kreative Bücher, smarte Tools und KI-Unterstützung.</p>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: 'de',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        },
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
