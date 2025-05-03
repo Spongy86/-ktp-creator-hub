@@ -1,88 +1,36 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Art of Intelligenz</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #e0f2ff, #f6fcff);
-      color: #333;
-    }
-    header {
-      background-color: #007acc;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    header h1 {
-      margin: 0;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 500;
-    }
-    .container {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 1rem;
-    }
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
-    }
-    h2 {
-      color: #007acc;
-    }
-    footer {
-      background: #f0f0f0;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #666;
-      margin-top: 3rem;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Art of Intelligenz</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Login</a>
-      <a href="#">Statistiken</a>
-    </nav>
-  </header>
+name: Deploy static content to GitHub Pages
 
-  <div class="container">
-    <div class="card">
-      <h2>Willkommen zurück!</h2>
-      <p>Die Plattform für deine Bücher, mit smarter KI-Unterstützung, KDP-Integration und kreativen Tools.</p>
-    </div>
+on:
+  push:
+    branches: ["main"]
 
-    <div class="card">
-      <h2>Aktionen</h2>
-      <ul>
-        <li>Bücher hochladen & verwalten</li>
-        <li>KDP-Verkaufszahlen anzeigen</li>
-        <li>Rezensionen analysieren</li>
-        <li>KI-Tools ausprobieren</li>
-      </ul>
-    </div>
-  </div>
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-  <footer>
-    &copy; 2025 Art of Intelligenz – Gemeinsam schreiben wir Zukunft
-  </footer>
-</body>
-</html>
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: .  # <- Root-Verzeichnis mit index.html
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
