@@ -6,53 +6,83 @@
   <title>Art of Intelligenz</title>
   <style>
     body {
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #f0f8ff;
+      background: linear-gradient(to right, #e0f2ff, #f6fcff);
       color: #333;
+    }
+    header {
+      background-color: #007acc;
+      color: white;
+      padding: 1rem 2rem;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      padding: 40px 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      font-family: Arial, sans-serif;
-      background-color: #e0f7fa;
-      padding: 10px;
+    header h1 {
+      margin: 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .card {
+      background: white;
       border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
     }
-
-    p {
-      font-size: 1.2rem;
-      color: #666;
-      max-width: 680px;
+    h2 {
+      color: #007acc;
+    }
+    footer {
+      background: #f0f0f0;
       text-align: center;
-    }
-
-    .google-translate-box {
-      margin-top: 20px;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
-  <div class="google-translate-box" id="google_translate_element"></div>
+  <header>
+    <h1>Art of Intelligenz</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Login</a>
+      <a href="#">Statistiken</a>
+    </nav>
+  </header>
 
-  <h1>Willkommen bei Art of Intelligenz!</h1>
-  <p>Die Plattform für kreative Bücher, smarte Tools und KI-Unterstützung.</p>
+  <div class="container">
+    <div class="card">
+      <h2>Willkommen zurück!</h2>
+      <p>Die Plattform für deine Bücher, mit smarter KI-Unterstützung, KDP-Integration und kreativen Tools.</p>
+    </div>
 
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement(
-        {
-          pageLanguage: 'de',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        },
-        'google_translate_element'
-      );
-    }
-  </script>
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <div class="card">
+      <h2>Aktionen</h2>
+      <ul>
+        <li>Bücher hochladen & verwalten</li>
+        <li>KDP-Verkaufszahlen anzeigen</li>
+        <li>Rezensionen analysieren</li>
+        <li>KI-Tools ausprobieren</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Art of Intelligenz – Gemeinsam schreiben wir Zukunft
+  </footer>
 </body>
 </html>
