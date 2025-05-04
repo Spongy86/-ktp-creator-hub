@@ -1,3 +1,4 @@
+
 name: Deploy static site to GitHub Pages
 
 on:
@@ -18,12 +19,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Pages
-        uses: 
+        uses: actions/configure-pages@v3
 
       - name: Upload static site
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v1
         with:
-          path: . # <- Punkt bedeutet: index.html liegt im Root
+          path: .
 
       - name: Deploy to GitHub Pages
         id: deployment
