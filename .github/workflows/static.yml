@@ -2,7 +2,7 @@ name: Deploy static site to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -10,17 +10,9 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,7 +23,7 @@ jobs:
       - name: Upload static site
         uses: actions/upload-pages-artifact@v2
         with:
-          path: . # Gebe hier den Pfad zu deinen Dateien an
+          path: . # <- Punkt bedeutet: index.html liegt im Root
 
       - name: Deploy to GitHub Pages
         id: deployment
